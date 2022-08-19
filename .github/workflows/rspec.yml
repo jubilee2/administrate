@@ -24,13 +24,14 @@ jobs:
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
         # Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'
         ruby: ['2.7', '3.0', '3.1']
-    runs-on: ${{ matrix.os }}    
+        gemfile: [ rails60, rails61, rails70 ]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
