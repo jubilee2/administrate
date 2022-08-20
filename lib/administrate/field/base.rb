@@ -78,6 +78,22 @@ module Administrate
         end
       end
 
+      def html_form_options(action=nil)
+        html_options = options.fetch(:html_form_options, {})
+        if html_options.respond_to? :call
+          case html_options.arity
+          when 0
+            return html_options.call
+          when 1
+            return html_options.call(action)
+          when 2
+            return html_options.call(action, resource)
+          end
+        else
+          return html_options
+        end
+      end
+
       attr_reader :attribute, :data, :options, :page, :resource
     end
   end

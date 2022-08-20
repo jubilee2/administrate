@@ -19,5 +19,5 @@ By default, the input is a text field.
   <%= f.label field.attribute %>
 </div>
 <div class="field-unit__field">
-  <%= f.text_field field.attribute %>
+  <%= f.text_field field.attribute, **field.html_form_options(controller.action_name) %>
 </div>
